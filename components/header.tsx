@@ -1,12 +1,13 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Menu, X, ChevronDown } from "lucide-react"
+import { Menu, X, ChevronDown, Search } from "lucide-react"
 import { useState } from "react"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
 
   const serviceItems = [
     "AI Agent Development",
@@ -15,6 +16,12 @@ export function Header() {
     "End-to-End Product Delivery",
     "Integration & Automation",
   ]
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Add your search logic here
+    console.log("Searching for:", searchQuery)
+  }
 
   return (
     <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
@@ -39,7 +46,7 @@ export function Header() {
           </div>
 
           <nav className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="ml-10 flex items-center space-x-8">
               {/* Services Dropdown */}
               <div className="relative group">
                 <button
@@ -88,7 +95,25 @@ export function Header() {
             </div>
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center space-x-4">
+            {/* Search Form */}
+            <form onSubmit={handleSearch} className="flex items-center mr-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search..."
+                  className="w-48 px-4 py-2 pr-10 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#005FAF] focus:border-transparent"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#005FAF]"
+                >
+                  <Search size={18} />
+                </button>
+              </div>
+            </form>
             <Button className="bg-[#005FAF] hover:bg-[#004080]">Book Demo</Button>
           </div>
 
@@ -126,6 +151,26 @@ export function Header() {
               <a href="#contact" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#005FAF]">
                 Contacts
               </a>
+
+              {/* Mobile Search */}
+              <form onSubmit={handleSearch} className="px-3 py-2">
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search..."
+                    className="w-full px-4 py-2 pr-10 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#005FAF] focus:border-transparent"
+                  />
+                  <button
+                    type="submit"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#005FAF]"
+                  >
+                    <Search size={18} />
+                  </button>
+                </div>
+              </form>
+
               <div className="px-3 py-2">
                 <Button className="w-full bg-[#005FAF] hover:bg-[#004080]">Book Demo</Button>
               </div>

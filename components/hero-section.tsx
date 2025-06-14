@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Zap, Clock, Target, Play, Sparkles } from "lucide-react"
 import { useState, useEffect } from "react"
+import Link from "next/link"
 
 export function HeroSection() {
   const [currentWord, setCurrentWord] = useState(0)
@@ -51,6 +52,15 @@ export function HeroSection() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16 animate-fade-in-up animation-delay-600">
+            <Link href="/interactive-demo" target="_blank">
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg px-10 py-6 rounded-full border-2 border-[#005FAF] text-[#005FAF] hover:bg-[#005FAF]/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 bg-white/80 backdrop-blur-sm"
+              >
+                Try Interactive Demo
+              </Button>
+            </Link>
             <Button
               size="lg"
               className="group bg-[#005FAF] hover:bg-[#004080] text-lg px-10 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
@@ -58,13 +68,6 @@ export function HeroSection() {
               <Play className="mr-3 w-6 h-6 group-hover:animate-pulse" />
               Watch Demo
               <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-lg px-10 py-6 rounded-full border-2 border-[#005FAF] text-[#005FAF] hover:bg-[#005FAF]/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 bg-white/80 backdrop-blur-sm"
-            >
-              Try Interactive Demo
             </Button>
           </div>
 
